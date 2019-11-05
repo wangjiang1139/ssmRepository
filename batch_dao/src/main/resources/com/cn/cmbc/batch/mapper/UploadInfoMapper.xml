@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.cmbc.batch.mapper.UploadInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.cmbc.batch.po.UploadInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="group_id" property="groupId" jdbcType="VARCHAR" />
+    <result column="fast_name" property="fastName" jdbcType="VARCHAR" />
+    <result column="uploda_time" property="uplodaTime" jdbcType="TIMESTAMP" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="stauts" property="stauts" jdbcType="CHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="this_batch_id" property="thisBatchId" jdbcType="VARCHAR" />
+    <result column="upload_back_01" property="uploadBack01" jdbcType="VARCHAR" />
+    <result column="upload_back_02" property="uploadBack02" jdbcType="VARCHAR" />
+    <result column="upload_back_03" property="uploadBack03" jdbcType="VARCHAR" />
+    <result column="upload_back_04" property="uploadBack04" jdbcType="VARCHAR" />
+    <result column="upload_back_05" property="uploadBack05" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, group_id, fast_name, uploda_time, service_code, stauts, file_name, this_batch_id, 
+    upload_back_01, upload_back_02, upload_back_03, upload_back_04, upload_back_05
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.cmbc.batch.po.UploadInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from upload_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from upload_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from upload_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.cmbc.batch.po.UploadInfoExample" >
+    delete from upload_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.cmbc.batch.po.UploadInfo" >
+    insert into upload_info (id, group_id, fast_name, 
+      uploda_time, service_code, stauts, 
+      file_name, this_batch_id, upload_back_01, 
+      upload_back_02, upload_back_03, upload_back_04, 
+      upload_back_05)
+    values (#{id,jdbcType=INTEGER}, #{groupId,jdbcType=VARCHAR}, #{fastName,jdbcType=VARCHAR}, 
+      #{uplodaTime,jdbcType=TIMESTAMP}, #{serviceCode,jdbcType=VARCHAR}, #{stauts,jdbcType=CHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{thisBatchId,jdbcType=VARCHAR}, #{uploadBack01,jdbcType=VARCHAR}, 
+      #{uploadBack02,jdbcType=VARCHAR}, #{uploadBack03,jdbcType=VARCHAR}, #{uploadBack04,jdbcType=VARCHAR}, 
+      #{uploadBack05,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.cmbc.batch.po.UploadInfo" >
+    insert into upload_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="groupId != null" >
+        group_id,
+      </if>
+      <if test="fastName != null" >
+        fast_name,
+      </if>
+      <if test="uplodaTime != null" >
+        uploda_time,
+      </if>
+      <if test="serviceCode != null" >
+        service_code,
+      </if>
+      <if test="stauts != null" >
+        stauts,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="thisBatchId != null" >
+        this_batch_id,
+      </if>
+      <if test="uploadBack01 != null" >
+        upload_back_01,
+      </if>
+      <if test="uploadBack02 != null" >
+        upload_back_02,
+      </if>
+      <if test="uploadBack03 != null" >
+        upload_back_03,
+      </if>
+      <if test="uploadBack04 != null" >
+        upload_back_04,
+      </if>
+      <if test="uploadBack05 != null" >
+        upload_back_05,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="fastName != null" >
+        #{fastName,jdbcType=VARCHAR},
+      </if>
+      <if test="uplodaTime != null" >
+        #{uplodaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceCode != null" >
+        #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stauts != null" >
+        #{stauts,jdbcType=CHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="thisBatchId != null" >
+        #{thisBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack01 != null" >
+        #{uploadBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack02 != null" >
+        #{uploadBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack03 != null" >
+        #{uploadBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack04 != null" >
+        #{uploadBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack05 != null" >
+        #{uploadBack05,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.cmbc.batch.po.UploadInfoExample" resultType="java.lang.Integer" >
+    select count(*) from upload_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update upload_info
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null" >
+        group_id = #{record.groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fastName != null" >
+        fast_name = #{record.fastName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uplodaTime != null" >
+        uploda_time = #{record.uplodaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serviceCode != null" >
+        service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stauts != null" >
+        stauts = #{record.stauts,jdbcType=CHAR},
+      </if>
+      <if test="record.fileName != null" >
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thisBatchId != null" >
+        this_batch_id = #{record.thisBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadBack01 != null" >
+        upload_back_01 = #{record.uploadBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadBack02 != null" >
+        upload_back_02 = #{record.uploadBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadBack03 != null" >
+        upload_back_03 = #{record.uploadBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadBack04 != null" >
+        upload_back_04 = #{record.uploadBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uploadBack05 != null" >
+        upload_back_05 = #{record.uploadBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update upload_info
+    set id = #{record.id,jdbcType=INTEGER},
+      group_id = #{record.groupId,jdbcType=VARCHAR},
+      fast_name = #{record.fastName,jdbcType=VARCHAR},
+      uploda_time = #{record.uplodaTime,jdbcType=TIMESTAMP},
+      service_code = #{record.serviceCode,jdbcType=VARCHAR},
+      stauts = #{record.stauts,jdbcType=CHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      this_batch_id = #{record.thisBatchId,jdbcType=VARCHAR},
+      upload_back_01 = #{record.uploadBack01,jdbcType=VARCHAR},
+      upload_back_02 = #{record.uploadBack02,jdbcType=VARCHAR},
+      upload_back_03 = #{record.uploadBack03,jdbcType=VARCHAR},
+      upload_back_04 = #{record.uploadBack04,jdbcType=VARCHAR},
+      upload_back_05 = #{record.uploadBack05,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.cmbc.batch.po.UploadInfo" >
+    update upload_info
+    <set >
+      <if test="groupId != null" >
+        group_id = #{groupId,jdbcType=VARCHAR},
+      </if>
+      <if test="fastName != null" >
+        fast_name = #{fastName,jdbcType=VARCHAR},
+      </if>
+      <if test="uplodaTime != null" >
+        uploda_time = #{uplodaTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stauts != null" >
+        stauts = #{stauts,jdbcType=CHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="thisBatchId != null" >
+        this_batch_id = #{thisBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack01 != null" >
+        upload_back_01 = #{uploadBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack02 != null" >
+        upload_back_02 = #{uploadBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack03 != null" >
+        upload_back_03 = #{uploadBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack04 != null" >
+        upload_back_04 = #{uploadBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadBack05 != null" >
+        upload_back_05 = #{uploadBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.cmbc.batch.po.UploadInfo" >
+    update upload_info
+    set group_id = #{groupId,jdbcType=VARCHAR},
+      fast_name = #{fastName,jdbcType=VARCHAR},
+      uploda_time = #{uplodaTime,jdbcType=TIMESTAMP},
+      service_code = #{serviceCode,jdbcType=VARCHAR},
+      stauts = #{stauts,jdbcType=CHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      this_batch_id = #{thisBatchId,jdbcType=VARCHAR},
+      upload_back_01 = #{uploadBack01,jdbcType=VARCHAR},
+      upload_back_02 = #{uploadBack02,jdbcType=VARCHAR},
+      upload_back_03 = #{uploadBack03,jdbcType=VARCHAR},
+      upload_back_04 = #{uploadBack04,jdbcType=VARCHAR},
+      upload_back_05 = #{uploadBack05,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

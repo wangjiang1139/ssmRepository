@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.cmbc.batch.mapper.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.cmbc.batch.po.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_code" property="productCode" jdbcType="VARCHAR" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_price" property="productPrice" jdbcType="DOUBLE" />
+    <result column="product_color" property="productColor" jdbcType="VARCHAR" />
+    <result column="product_stock" property="productStock" jdbcType="VARCHAR" />
+    <result column="product_info" property="productInfo" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="modify_by" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="batch_id" property="batchId" jdbcType="VARCHAR" />
+    <result column="prod_back_01" property="prodBack01" jdbcType="VARCHAR" />
+    <result column="prod_back_02" property="prodBack02" jdbcType="VARCHAR" />
+    <result column="prod_back_03" property="prodBack03" jdbcType="VARCHAR" />
+    <result column="prod_back_04" property="prodBack04" jdbcType="VARCHAR" />
+    <result column="prod_back_05" property="prodBack05" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, product_code, product_name, product_price, product_color, product_stock, product_info, 
+    create_by, modify_by, create_time, modify_time, batch_id, prod_back_01, prod_back_02, 
+    prod_back_03, prod_back_04, prod_back_05
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.cmbc.batch.po.ProductExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.cmbc.batch.po.ProductExample" >
+    delete from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.cmbc.batch.po.Product" >
+    insert into product (id, product_code, product_name, 
+      product_price, product_color, product_stock, 
+      product_info, create_by, modify_by, 
+      create_time, modify_time, batch_id, 
+      prod_back_01, prod_back_02, prod_back_03, 
+      prod_back_04, prod_back_05)
+    values (#{id,jdbcType=INTEGER}, #{productCode,jdbcType=VARCHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{productPrice,jdbcType=DOUBLE}, #{productColor,jdbcType=VARCHAR}, #{productStock,jdbcType=VARCHAR}, 
+      #{productInfo,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{modifyBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}, #{batchId,jdbcType=VARCHAR}, 
+      #{prodBack01,jdbcType=VARCHAR}, #{prodBack02,jdbcType=VARCHAR}, #{prodBack03,jdbcType=VARCHAR}, 
+      #{prodBack04,jdbcType=VARCHAR}, #{prodBack05,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.cmbc.batch.po.Product" >
+    insert into product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productCode != null" >
+        product_code,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="productPrice != null" >
+        product_price,
+      </if>
+      <if test="productColor != null" >
+        product_color,
+      </if>
+      <if test="productStock != null" >
+        product_stock,
+      </if>
+      <if test="productInfo != null" >
+        product_info,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="modifyBy != null" >
+        modify_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+      <if test="batchId != null" >
+        batch_id,
+      </if>
+      <if test="prodBack01 != null" >
+        prod_back_01,
+      </if>
+      <if test="prodBack02 != null" >
+        prod_back_02,
+      </if>
+      <if test="prodBack03 != null" >
+        prod_back_03,
+      </if>
+      <if test="prodBack04 != null" >
+        prod_back_04,
+      </if>
+      <if test="prodBack05 != null" >
+        prod_back_05,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productColor != null" >
+        #{productColor,jdbcType=VARCHAR},
+      </if>
+      <if test="productStock != null" >
+        #{productStock,jdbcType=VARCHAR},
+      </if>
+      <if test="productInfo != null" >
+        #{productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack01 != null" >
+        #{prodBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack02 != null" >
+        #{prodBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack03 != null" >
+        #{prodBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack04 != null" >
+        #{prodBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack05 != null" >
+        #{prodBack05,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.cmbc.batch.po.ProductExample" resultType="java.lang.Integer" >
+    select count(*) from product
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update product
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.productCode != null" >
+        product_code = #{record.productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productName != null" >
+        product_name = #{record.productName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productPrice != null" >
+        product_price = #{record.productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.productColor != null" >
+        product_color = #{record.productColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productStock != null" >
+        product_stock = #{record.productStock,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productInfo != null" >
+        product_info = #{record.productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null" >
+        create_by = #{record.createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modifyBy != null" >
+        modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.modifyTime != null" >
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.batchId != null" >
+        batch_id = #{record.batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodBack01 != null" >
+        prod_back_01 = #{record.prodBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodBack02 != null" >
+        prod_back_02 = #{record.prodBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodBack03 != null" >
+        prod_back_03 = #{record.prodBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodBack04 != null" >
+        prod_back_04 = #{record.prodBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prodBack05 != null" >
+        prod_back_05 = #{record.prodBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update product
+    set id = #{record.id,jdbcType=INTEGER},
+      product_code = #{record.productCode,jdbcType=VARCHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
+      product_price = #{record.productPrice,jdbcType=DOUBLE},
+      product_color = #{record.productColor,jdbcType=VARCHAR},
+      product_stock = #{record.productStock,jdbcType=VARCHAR},
+      product_info = #{record.productInfo,jdbcType=VARCHAR},
+      create_by = #{record.createBy,jdbcType=VARCHAR},
+      modify_by = #{record.modifyBy,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      batch_id = #{record.batchId,jdbcType=VARCHAR},
+      prod_back_01 = #{record.prodBack01,jdbcType=VARCHAR},
+      prod_back_02 = #{record.prodBack02,jdbcType=VARCHAR},
+      prod_back_03 = #{record.prodBack03,jdbcType=VARCHAR},
+      prod_back_04 = #{record.prodBack04,jdbcType=VARCHAR},
+      prod_back_05 = #{record.prodBack05,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.cmbc.batch.po.Product" >
+    update product
+    <set >
+      <if test="productCode != null" >
+        product_code = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="productColor != null" >
+        product_color = #{productColor,jdbcType=VARCHAR},
+      </if>
+      <if test="productStock != null" >
+        product_stock = #{productStock,jdbcType=VARCHAR},
+      </if>
+      <if test="productInfo != null" >
+        product_info = #{productInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyBy != null" >
+        modify_by = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="batchId != null" >
+        batch_id = #{batchId,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack01 != null" >
+        prod_back_01 = #{prodBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack02 != null" >
+        prod_back_02 = #{prodBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack03 != null" >
+        prod_back_03 = #{prodBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack04 != null" >
+        prod_back_04 = #{prodBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="prodBack05 != null" >
+        prod_back_05 = #{prodBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.cmbc.batch.po.Product" >
+    update product
+    set product_code = #{productCode,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_price = #{productPrice,jdbcType=DOUBLE},
+      product_color = #{productColor,jdbcType=VARCHAR},
+      product_stock = #{productStock,jdbcType=VARCHAR},
+      product_info = #{productInfo,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      modify_by = #{modifyBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      batch_id = #{batchId,jdbcType=VARCHAR},
+      prod_back_01 = #{prodBack01,jdbcType=VARCHAR},
+      prod_back_02 = #{prodBack02,jdbcType=VARCHAR},
+      prod_back_03 = #{prodBack03,jdbcType=VARCHAR},
+      prod_back_04 = #{prodBack04,jdbcType=VARCHAR},
+      prod_back_05 = #{prodBack05,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

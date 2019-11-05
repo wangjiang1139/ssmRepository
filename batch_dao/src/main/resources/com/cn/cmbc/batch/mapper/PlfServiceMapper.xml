@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.cmbc.batch.mapper.PlfServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.cn.cmbc.batch.po.PlfService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="service_id" property="serviceId" jdbcType="VARCHAR" />
+    <result column="local_path" property="localPath" jdbcType="VARCHAR" />
+    <result column="file_name" property="fileName" jdbcType="VARCHAR" />
+    <result column="file_type" property="fileType" jdbcType="VARCHAR" />
+    <result column="stauts" property="stauts" jdbcType="VARCHAR" />
+    <result column="last_batch_id" property="lastBatchId" jdbcType="VARCHAR" />
+    <result column="plf_back_01" property="plfBack01" jdbcType="VARCHAR" />
+    <result column="plf_back_02" property="plfBack02" jdbcType="VARCHAR" />
+    <result column="plf_back_03" property="plfBack03" jdbcType="VARCHAR" />
+    <result column="plf_back_04" property="plfBack04" jdbcType="VARCHAR" />
+    <result column="plf_back_05" property="plfBack05" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, service_id, local_path, file_name, file_type, stauts, last_batch_id, plf_back_01, 
+    plf_back_02, plf_back_03, plf_back_04, plf_back_05
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cn.cmbc.batch.po.PlfServiceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from plf_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from plf_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from plf_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cn.cmbc.batch.po.PlfServiceExample" >
+    delete from plf_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cn.cmbc.batch.po.PlfService" >
+    insert into plf_service (id, service_id, local_path, 
+      file_name, file_type, stauts, 
+      last_batch_id, plf_back_01, plf_back_02, 
+      plf_back_03, plf_back_04, plf_back_05
+      )
+    values (#{id,jdbcType=INTEGER}, #{serviceId,jdbcType=VARCHAR}, #{localPath,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{fileType,jdbcType=VARCHAR}, #{stauts,jdbcType=VARCHAR}, 
+      #{lastBatchId,jdbcType=VARCHAR}, #{plfBack01,jdbcType=VARCHAR}, #{plfBack02,jdbcType=VARCHAR}, 
+      #{plfBack03,jdbcType=VARCHAR}, #{plfBack04,jdbcType=VARCHAR}, #{plfBack05,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cn.cmbc.batch.po.PlfService" >
+    insert into plf_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serviceId != null" >
+        service_id,
+      </if>
+      <if test="localPath != null" >
+        local_path,
+      </if>
+      <if test="fileName != null" >
+        file_name,
+      </if>
+      <if test="fileType != null" >
+        file_type,
+      </if>
+      <if test="stauts != null" >
+        stauts,
+      </if>
+      <if test="lastBatchId != null" >
+        last_batch_id,
+      </if>
+      <if test="plfBack01 != null" >
+        plf_back_01,
+      </if>
+      <if test="plfBack02 != null" >
+        plf_back_02,
+      </if>
+      <if test="plfBack03 != null" >
+        plf_back_03,
+      </if>
+      <if test="plfBack04 != null" >
+        plf_back_04,
+      </if>
+      <if test="plfBack05 != null" >
+        plf_back_05,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serviceId != null" >
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="localPath != null" >
+        #{localPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="stauts != null" >
+        #{stauts,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBatchId != null" >
+        #{lastBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack01 != null" >
+        #{plfBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack02 != null" >
+        #{plfBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack03 != null" >
+        #{plfBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack04 != null" >
+        #{plfBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack05 != null" >
+        #{plfBack05,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cn.cmbc.batch.po.PlfServiceExample" resultType="java.lang.Integer" >
+    select count(*) from plf_service
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update plf_service
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceId != null" >
+        service_id = #{record.serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.localPath != null" >
+        local_path = #{record.localPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileName != null" >
+        file_name = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileType != null" >
+        file_type = #{record.fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stauts != null" >
+        stauts = #{record.stauts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastBatchId != null" >
+        last_batch_id = #{record.lastBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plfBack01 != null" >
+        plf_back_01 = #{record.plfBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plfBack02 != null" >
+        plf_back_02 = #{record.plfBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plfBack03 != null" >
+        plf_back_03 = #{record.plfBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plfBack04 != null" >
+        plf_back_04 = #{record.plfBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="record.plfBack05 != null" >
+        plf_back_05 = #{record.plfBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update plf_service
+    set id = #{record.id,jdbcType=INTEGER},
+      service_id = #{record.serviceId,jdbcType=VARCHAR},
+      local_path = #{record.localPath,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
+      file_type = #{record.fileType,jdbcType=VARCHAR},
+      stauts = #{record.stauts,jdbcType=VARCHAR},
+      last_batch_id = #{record.lastBatchId,jdbcType=VARCHAR},
+      plf_back_01 = #{record.plfBack01,jdbcType=VARCHAR},
+      plf_back_02 = #{record.plfBack02,jdbcType=VARCHAR},
+      plf_back_03 = #{record.plfBack03,jdbcType=VARCHAR},
+      plf_back_04 = #{record.plfBack04,jdbcType=VARCHAR},
+      plf_back_05 = #{record.plfBack05,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cn.cmbc.batch.po.PlfService" >
+    update plf_service
+    <set >
+      <if test="serviceId != null" >
+        service_id = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="localPath != null" >
+        local_path = #{localPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null" >
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileType != null" >
+        file_type = #{fileType,jdbcType=VARCHAR},
+      </if>
+      <if test="stauts != null" >
+        stauts = #{stauts,jdbcType=VARCHAR},
+      </if>
+      <if test="lastBatchId != null" >
+        last_batch_id = #{lastBatchId,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack01 != null" >
+        plf_back_01 = #{plfBack01,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack02 != null" >
+        plf_back_02 = #{plfBack02,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack03 != null" >
+        plf_back_03 = #{plfBack03,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack04 != null" >
+        plf_back_04 = #{plfBack04,jdbcType=VARCHAR},
+      </if>
+      <if test="plfBack05 != null" >
+        plf_back_05 = #{plfBack05,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cn.cmbc.batch.po.PlfService" >
+    update plf_service
+    set service_id = #{serviceId,jdbcType=VARCHAR},
+      local_path = #{localPath,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_type = #{fileType,jdbcType=VARCHAR},
+      stauts = #{stauts,jdbcType=VARCHAR},
+      last_batch_id = #{lastBatchId,jdbcType=VARCHAR},
+      plf_back_01 = #{plfBack01,jdbcType=VARCHAR},
+      plf_back_02 = #{plfBack02,jdbcType=VARCHAR},
+      plf_back_03 = #{plfBack03,jdbcType=VARCHAR},
+      plf_back_04 = #{plfBack04,jdbcType=VARCHAR},
+      plf_back_05 = #{plfBack05,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
