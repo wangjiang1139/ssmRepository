@@ -10,7 +10,7 @@
  */
 package com.cn.cmbc.batch.function;
 
-import com.cn.cmbc.batch.domain.FileRequestBody;
+import com.cn.cmbc.batch.domain.request.FileRequestBody;
 import com.cn.cmbc.batch.po.PlfService;
 import com.cn.cmbc.batch.service.IFileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,7 @@ public class FileFunction {
     @RequestMapping("/findAllPlfService")
     @ResponseBody
     public List<PlfService> findAll(@RequestBody FileRequestBody body){
+        System.out.println("aaaaaaaaaaaaaaaaaaa");
         return fileService.findAll(body);
     }
 }

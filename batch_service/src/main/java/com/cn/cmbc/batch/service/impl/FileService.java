@@ -10,10 +10,11 @@
  */
 package com.cn.cmbc.batch.service.impl;
 
-import com.cn.cmbc.batch.domain.FileRequestBody;
+import com.cn.cmbc.batch.domain.request.FileRequestBody;
 import com.cn.cmbc.batch.mapper.PlfServiceMapper;
 import com.cn.cmbc.batch.po.PlfService;
 import com.cn.cmbc.batch.service.IFileService;
+import com.cn.cmbc.exception.MyException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,11 @@ public class FileService implements IFileService{
     private PlfServiceMapper plfServiceMapper;
 
     public List<PlfService> findAll(FileRequestBody body) {
-        return plfServiceMapper.selectByExample(null);
+      try{
+          //int i=10/0;
+          return plfServiceMapper.selectByExample(null);
+      }catch (Exception e){
+          throw new MyException("A00301","查询异常");
+      }
     }
 }

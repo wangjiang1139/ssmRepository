@@ -31,4 +31,11 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/file/*"/>
+            <bean class="com.cn.cmbc.interceptor.MyrInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

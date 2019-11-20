@@ -22,9 +22,34 @@
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
+    <!--配置自定义异常处理器-->
+    <bean id="myExceptionResolver" class="com.cn.cmbc.exception.MyExceptionResolver"/>
     <!--配置事务的通知-->
     <!-- 开启事务控制的注解支持 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <!--   <tx:advice id="advice">
         <tx:attributes>
             <tx:method name="*" propagation="REQUIRED"/>
