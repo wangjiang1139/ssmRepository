@@ -30,7 +30,6 @@ public class HttpServletFilter implements Filter{
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         ServletRequest requestWrapper = null;
-        System.out.println("我是过滤器");
         if(request instanceof HttpServletRequest) {
             requestWrapper = new RequestWrapper((HttpServletRequest) request);
         }

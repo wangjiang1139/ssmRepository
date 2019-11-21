@@ -1,13 +1,3 @@
-/**
- * Copyright (C), 2015-2019, XXX有限公司
- * FileName: FileRequestBody
- * Author:   wangjiang
- * Date:     2019/11/5 23:00
- * Description: 文件操作请求实体类
- * History:
- * <author>          <time>          <version>          <desc>
- * 作者姓名           修改时间           版本号              描述
- */
 package com.cn.cmbc.batch.domain.request;
 
 import com.cn.cmbc.batch.base.BaseBody;

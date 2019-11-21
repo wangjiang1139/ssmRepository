@@ -10,14 +10,6 @@
  */
 package com.cn.cmbc.batch.domain.request;
 
-/**
- * 〈一句话功能简述〉<br> 
- * 〈〉
- *
- * @author wangjiang
- * @create 2019/11/19
- * @since 1.0.0
- */
 public class FileUploadRequestBody {
 
     private  String flag;

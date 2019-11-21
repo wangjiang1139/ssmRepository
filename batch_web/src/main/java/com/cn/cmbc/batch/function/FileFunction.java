@@ -39,7 +39,6 @@ public class FileFunction {
     @RequestMapping("/findAllPlfService")
     @ResponseBody
     public List<PlfService> findAll(@RequestBody FileRequestBody body){
-        System.out.println("aaaaaaaaaaaaaaaaaaa");
         return fileService.findAll(body);
     }
 }

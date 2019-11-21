@@ -61,7 +61,6 @@ public class RequestWrapper extends HttpServletRequestWrapper{
             }
         }
         body = sb.toString();
-        System.out.println(body);
     }
 
     @Override
