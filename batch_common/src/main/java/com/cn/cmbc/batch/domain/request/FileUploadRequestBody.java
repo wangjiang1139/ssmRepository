@@ -10,6 +10,9 @@
  */
 package com.cn.cmbc.batch.domain.request;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class FileUploadRequestBody {
 
     private  String flag;

@@ -17,4 +17,5 @@
 			    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
     <import resource="classpath:spring/applicationContext-dao.xml"></import>
     <import resource="classpath:spring/applicationContext-service.xml"></import>
+    <import resource="applicationContext-rs-server.xml"></import>
 </beans>

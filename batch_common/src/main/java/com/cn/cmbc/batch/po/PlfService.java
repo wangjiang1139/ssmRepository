@@ -1,5 +1,8 @@
 package com.cn.cmbc.batch.po;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class PlfService {
     private Integer id;
 

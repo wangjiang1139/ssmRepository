@@ -2,6 +2,7 @@ package com.cn.cmbc.batch.domain.request;
 
 import com.cn.cmbc.batch.base.BaseBody;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -12,6 +13,7 @@ import java.io.Serializable;
  * @create 2019/11/5
  * @since 1.0.0
  */
+@XmlRootElement
 public class FileRequestBody extends BaseBody implements Serializable {
 
     private FileUploadRequestBody body;

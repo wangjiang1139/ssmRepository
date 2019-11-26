@@ -10,6 +10,8 @@
  */
 package com.cn.cmbc.batch.base;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈〉
@@ -18,6 +20,7 @@ package com.cn.cmbc.batch.base;
  * @create 2019/11/19
  * @since 1.0.0
  */
+@XmlRootElement
 public class BaseBody {
 
     private BaseHeander header;

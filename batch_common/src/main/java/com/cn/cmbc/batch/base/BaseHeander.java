@@ -10,6 +10,9 @@
  */
 package com.cn.cmbc.batch.base;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class BaseHeander {
 
     private String message;
